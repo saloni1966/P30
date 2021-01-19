@@ -12,28 +12,34 @@ class Block{
         this.width = width;
         this.height = height;
         World.add(world, this.body);
-        this.visibility = 255;
+        this.visiblity = 255;
         
+      }
+      score(){
+        if(this.visiblity <0 && this.visiblity >-105){
+          score++;
+        }
       }
      
       display(){
-        console.log(this.body.speed);
+       // console.log(this.body.speed);
         if(this.body.speed <3){
         var angle = this.body.angle;
         var pos= this.body.position;
         push();
         translate(pos.x, pos.y);
         rotate(angle);
+        this.visiblity = this.visiblity-0.0007;
+        tint(255,this.visiblity);
         rectMode(CENTER);
         rect(0,0,this.width, this.height);
         pop();
       }else{
         World.remove(world, this.body);
-        push();
-        this.visibility = this.visibility -1;
-        tint(255,this.visibility);
-        pop();
-        
+       push()
+       this.visiblity= this.visiblity-5;
+       pop();
       }
     }
+   
 }
